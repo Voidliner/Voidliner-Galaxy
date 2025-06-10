@@ -32,13 +32,13 @@ function voidliner_create_account($pdo, $username, $password, $tableName = "void
             ':username' => $username,
             ':password' => $hashedPassword
         ]);
-         voidliner_create_account_table($pdo, $customId); 
+        
         echo json_encode([
             "status" => "success",
             "message" => "Created $username account.",
             "custom_id" => $customId
         ]);
-
+         voidliner_create_account_table($pdo, $customId); 
         }
     } catch (PDOException $e) {
         echo json_encode([
