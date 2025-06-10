@@ -3,7 +3,9 @@ function voidliner_api_handler($pdo) {
     $mode = $_GET['mode'];
     $tableName = $_GET['table'] ?? null; 
     $columnName = $_GET['column'] ?? null;
+    $columnName1 = $_GET['column1'] ?? null;
     $data = $_GET['data'] ?? null;
+    $data1 = $_GET['data1'] ?? null;
     $customId = $_GET['ID'] ?? null;
     $job = $_GET['job'] ?? null;
     $location = $_GET['location'] ?? null;
@@ -27,7 +29,7 @@ function voidliner_api_handler($pdo) {
         case 'delete_account':      voidliner_delete_account($pdo, $customId); break;
         case 'delete_account':      voidliner_delete_account($pdo, $customId); break;
         case 'get_table_data':      voidliner_get_table_data($pdo, $tableName); break;
-        case 'insert_data':         voidliner_insert_data($pdo, $tableName, $columnName, $data); break;
+        case 'insert_data':         voidliner_insert_data($pdo, $tableName, $data, $data1); break;
         case 'login':               voidliner_login_account($pdo, $username, $password); break;
         default: echo json_encode   (["status" => "error", "message" => "Invalid or missing mode."]);  break;
     }
