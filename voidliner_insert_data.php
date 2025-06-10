@@ -1,26 +1,25 @@
 <?php
-function voidliner_insert_data($pdo, $tableName, $columnName, $data) {
+function voidliner_insert_data($pdo, $tableName, $data, $data1) {
+
     try {
-        // Sanitize the table and column names
         $tableName = preg_replace('/[^a-zA-Z0-9_]/', '', $tableName);
-        $columnName = preg_replace('/[^a-zA-Z0-9_]/', '', $columnName);
-
-        // PostgreSQL uses double quotes for identifiers
-        $sql = "UPDATE \"$tableName\" SET \"$columnName\" = :data";
-
+        $sql = "INSERT INTO \"$tableName\" (category, content) VALUES (:data, :data1)";
         $stmt = $pdo->prepare($sql);
+
         $stmt->execute([
-            ':data' => $data
+            ':data' => $data, 
+            ':data1' => $data1
         ]);
 
         echo json_encode([
             "status" => "success",
-            "message" => "Data updated in $tableName"
+            "message" => "Data inserted into $tableName",
+            "company_message" => "Hired"
         ]);
     } catch (PDOException $e) {
         echo json_encode([
             "status" => "error",
-            "message" => "Failed to update data: " . $e->getMessage()
+            "message" => "Failed to insert data: " . $e->getMessage()
         ]);
     }
 }
