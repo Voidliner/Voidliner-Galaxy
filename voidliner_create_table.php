@@ -4,8 +4,8 @@ function voidliner_create_account_table($pdo, $tableName) {
     try {
         $sql = "
             CREATE TABLE IF NOT EXISTS \"$tableName\" (
-            Voidship VARCHAR(50),
-            Company VARCHAR(50)
+            Category VARCHAR(50),
+            Value VARCHAR(50)
             );  
         ";
         $pdo->exec($sql);
